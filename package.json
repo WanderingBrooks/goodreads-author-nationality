@@ -1,0 +1,19 @@
+{
+  "name": "goodreads-author-nationality",
+  "version": "1.0.0",
+  "description": "Show the authors nationality as an emoji next to their name on goodreads",
+  "main": "N/A",
+  "scripts": {
+    "test": "N/A"
+  },
+  "author": "Jason Brooks",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "0.19.0",
+    "node-html-parser": "1.1.16"
+  },
+  "devDependencies": {
+    "webpack": "4.41.3",
+    "webpack-cli": "3.3.10"
+  }
+}

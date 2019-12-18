@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "Goodreads Author Nationality",
+  "short_name": "GAN",
+  "version": "1.0.0",
+  "description": "Show the authors nationality as an emoji next to their name on goodreads",
+  "content_scripts": [
+    {
+      "matches": ["http://*.goodreads.com/*", "https://*.goodreads.com/*"],
+      "js": ["inject-icons.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["main.js"],
+    "persistent": false
+  },
+  "permissions": ["activeTab"],
+  "web_accessible_resources": ["flag-lookup.json"]
+}
