@@ -13,10 +13,10 @@ fetch(flagLookupURL).then((response) => response.json()).then((flagLookup) => {
     };
 
     const flag = document.createElement('span');
-    flag.innerText = flagLookup[nationalityToUse] || nationality;
+    flag.innerText = ` ${flagLookup[nationalityToUse] || nationality}`;
     flag.title = nationalityToUse;
     flag.style.cursor = 'help';
-    author.insertAdjacentHTML('beforeend', '&nbsp;');
+    flag.style['font-size'] = '1.25em';
     author.parentNode.insertBefore(flag, author.nextSibling);
   }
 
