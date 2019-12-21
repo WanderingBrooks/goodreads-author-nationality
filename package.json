@@ -4,7 +4,7 @@
   "description": "Show the authors nationality as an emoji next to their name on goodreads",
   "main": "N/A",
   "scripts": {
-    "test": "N/A"
+    "build": "npx webpack && ./deploy.sh"
   },
   "author": "Jason Brooks",
   "license": "MIT",
