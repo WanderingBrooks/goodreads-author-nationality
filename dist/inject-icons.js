@@ -20,24 +20,28 @@ fetch(flagLookupURL).then((response) => response.json()).then((flagLookup) => {
     author.parentNode.insertBefore(flag, author.nextSibling);
   }
 
+  const updatedStatusAndInject = callback => (author, index) => {
+    if (!authorStatus[author.href]) {
+      authorStatus[author.href] = { displayedIndices: [] };
+    }
+
+    if (!authorStatus[author.href].displayedIndices.includes(index)) {
+      if (authorStatus[author.href].status === 'done') {
+        injectIcon(author)(authorStatus[author.href].nationality);
+        authorStatus[author.href].displayedIndices.push(index);
+      } else if (authorStatus[author.href].status !== 'loading') {
+        chrome.runtime.sendMessage({ message: 'author', author: author.href }, callback(author));
+        authorStatus[author.href] = { status: 'loading', displayedIndices: [index] };
+      }
+    }
+  };
+
   setInterval(() => {
     const bookListAuthors = document.querySelectorAll('a.authorName');
+    const myBooksAuthors = document.querySelectorAll('.field.author .value a');
 
-    bookListAuthors.forEach((author, index) => {
-      if (!authorStatus[author.href]) {
-        authorStatus[author.href] = { displayedIndices: [] };
-      }
-
-      if (!authorStatus[author.href].displayedIndices.includes(index)) {
-        if (authorStatus[author.href].status === 'done') {
-          injectIcon(author)(authorStatus[author.href].nationality);
-          authorStatus[author.href].displayedIndices.push(index);
-        } else if (authorStatus[author.href].status !== 'loading') {
-          chrome.runtime.sendMessage({ message: 'author', author: author.href }, injectIcon(author));
-          authorStatus[author.href] = { status: 'loading', displayedIndices: [index] };
-        }
-      }
-    });
+    bookListAuthors.forEach(updatedStatusAndInject(injectIcon));
+    myBooksAuthors.forEach(updatedStatusAndInject(injectIcon));
  }, 500);
 });
 
