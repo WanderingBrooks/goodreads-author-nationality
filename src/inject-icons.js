@@ -16,7 +16,7 @@ fetch(flagLookupURL).then((response) => response.json()).then((flagLookup) => {
     flag.innerText = ` ${flagLookup[nationalityToUse] || nationality}`;
     flag.title = nationalityToUse;
     flag.style.cursor = 'help';
-    flag.style['font-size'] = '1.25em';
+    flag.style['font-size'] = flagLookup[nationalityToUse] ? '1.25em' : 'inherit';
     author.parentNode.insertBefore(flag, author.nextSibling);
   }
 

@@ -26,8 +26,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       fetchAuthorNationality(request.author).then(sendResponse);
       break;
     default:
-      console.log('here');
       throw new Error('message type not supported');
   }
+
   return true; 
 });
