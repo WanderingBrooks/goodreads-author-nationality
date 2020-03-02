@@ -1,4 +1,4 @@
-const flagLookupURL = chrome.runtime.getURL('./flag-lookup.json');
+const flagLookupURL = browser.runtime.getURL('./flag-lookup.json');
 
 const authorStatus = {};
 
@@ -30,7 +30,7 @@ fetch(flagLookupURL).then((response) => response.json()).then((flagLookup) => {
         injectIcon(author)(authorStatus[author.href].nationality);
         authorStatus[author.href].displayedIndices.push(index);
       } else if (authorStatus[author.href].status !== 'loading') {
-        chrome.runtime.sendMessage({ message: 'author', author: author.href }, callback(author));
+        browser.runtime.sendMessage({ message: 'author', author: author.href }, callback(author));
         authorStatus[author.href] = { status: 'loading', displayedIndices: [index] };
       }
     }

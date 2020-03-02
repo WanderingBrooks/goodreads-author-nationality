@@ -20,7 +20,7 @@ const fetchAuthorNationality = async (authorURL) => {
   }
 }
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
   switch (request.message) {
     case 'author':
       fetchAuthorNationality(request.author).then(sendResponse);
