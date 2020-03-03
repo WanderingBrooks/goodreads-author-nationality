@@ -4,7 +4,7 @@ const authorStatus = {};
 
 fetch(flagLookupURL).then((response) => response.json()).then((flagLookup) => {
   const injectIcon = author => nationality => {
-    const nationalityToUse = nationality ? nationality : 'Not Found';
+    const nationalityToUse = nationality || 'Not Found';
 
     authorStatus[author.href] = {
       ...authorStatus[author.href],

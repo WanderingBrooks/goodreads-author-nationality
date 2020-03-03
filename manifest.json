@@ -6,7 +6,7 @@
   "description": "Show the authors nationality as an emoji next to their name on goodreads",
   "content_scripts": [
     {
-      "matches": ["http://*.goodreads.com/*", "https://*.goodreads.com/*"],
+      "matches": ["*://*.goodreads.com/*"],
       "js": ["inject-icons.js"]
     }
   ],
